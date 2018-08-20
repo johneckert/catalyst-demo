@@ -8,6 +8,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "jscatalyst": "^1.1.20",
     "vue": "^2.5.17"
   },
   "devDependencies": {
