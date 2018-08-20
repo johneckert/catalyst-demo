@@ -12,13 +12,13 @@
         </v-flex>
       </v-layout>
       <v-layout row flex>
-        <v-flex xs12 >
-          <v-card height=500>
-            <bar-chart 
+        <v-flex xs12>
+          <v-card height="40rem">
+            <bar-chart
               :data-model="tableData"
               title="Fake Table"
             ></bar-chart>
-          </v-card>
+          </v-card>            
         </v-flex>
       </v-layout>
     </v-container>
