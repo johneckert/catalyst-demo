@@ -12,10 +12,15 @@
         </v-flex>
       </v-layout>
       <v-layout row flex>
-        <v-flex xs12>
-          <bullet-chart
+        <v-flex xs12 >
+          <v-card height=500>
+            <div>
+          <bar-chart 
             :data-model="tableData"
-          ></bullet-chart>
+            title="Fake Table"
+          ></bar-chart>
+          </div>
+          </v-card>
         </v-flex>
       </v-layout>
     </v-container>
@@ -23,17 +28,21 @@
 </template>
 
 <script>
-import { D3BulletChart, D3BarChart } from "jscatalyst";
-import { mapGetters } from "vuex";
+import { D3BarChart } from "jscatalyst";
+import { mapGetters, mapMutations } from "vuex";
 
 export default {
   name: "app",
   mixins: ["styleTogglerMixin"],
   components: {
-    barChart: D3BarChart,
-    bulletChart: D3BulletChart
+    barChart: D3BarChart
   },
-  computed: { ...mapGetters(["tableData", "columns", "options"]) }
+  computed: {
+    ...mapGetters(["tableData", "columns", "options", "clicked"])
+  },
+  methods: {
+    ...mapMutations(["selectEl"])
+  }
 };
 </script>
 
