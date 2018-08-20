@@ -1,16 +1,17 @@
 <template>
   <v-app>
     <v-container text-xs-center>
-      <v-layout align-center justify-center row>
+      <v-layout row flex>
         <v-flex xs12>
             <v-client-table
               :data="tableData"
               :columns="columns"
               :options="options"
+              :isClientSide="true"
             ></v-client-table>
         </v-flex>
       </v-layout>
-      <v-layout align-center justify-center row>
+      <v-layout row flex>
         <v-flex xs12>
           <bullet-chart
             :data-model="tableData"
@@ -22,56 +23,17 @@
 </template>
 
 <script>
-import { D3BulletChart } from "jscatalyst";
+import { D3BulletChart, D3BarChart } from "jscatalyst";
+import { mapGetters } from "vuex";
 
 export default {
   name: "app",
+  mixins: ["styleTogglerMixin"],
   components: {
+    barChart: D3BarChart,
     bulletChart: D3BulletChart
   },
-  data: function() {
-    return {
-      tableData: [
-        {
-          title: "Revenue",
-          subtitle: "US$, in thousands",
-          ranges: [150, 225, 300],
-          measures: [270],
-          markers: [250]
-        },
-        {
-          title: "Profit",
-          subtitle: "%",
-          ranges: [20, 25, 30],
-          measures: [23],
-          markers: [26]
-        },
-        {
-          title: "Order Size",
-          subtitle: "US$, average",
-          ranges: [350, 500, 600],
-          measures: [320],
-          markers: [550]
-        },
-        {
-          title: "New Customers",
-          subtitle: "count",
-          ranges: [1400, 2000, 2500],
-          measures: [1650],
-          markers: [2100]
-        },
-        {
-          title: "Satisfaction",
-          subtitle: "out of 5",
-          ranges: [3.5, 4.25, 5],
-          measures: [4.7],
-          markers: [4.4]
-        }
-      ],
-      columns: ["title", "subtitle", "ranges", "measures", "markers"],
-      options: {}
-    };
-  }
+  computed: { ...mapGetters(["tableData", "columns", "options"]) }
 };
 </script>
 
