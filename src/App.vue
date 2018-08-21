@@ -39,7 +39,8 @@
       <v-flex row>
         <v-card :height="height">
           <bar-chart
-          @click.native="filterbyBar"
+          @mouseover.native="setFilter"
+          @mouseout.native="removeFilter"
           :data-model="tableData"
           title="Fake Table"
       ></bar-chart>
@@ -71,13 +72,19 @@ export default {
       this.gridApi = params.api;
       this.columnApi = params.columnApi;
     },
-    filterbyBar() {
+    setFilter() {
       //Get clicked Bar's X value from tool tip
       let tooltip = document.getElementsByClassName("d3_visuals_tooltip")[0];
-      let x = tooltip.getElementsByTagName("b")[0].innerHTML;
+      let x = null;
+      if (tooltip.getElementsByTagName("b")[0]) {
+        x = tooltip.getElementsByTagName("b")[0].innerHTML;
+      }
       this.$store.commit("setClicked", x);
-
+      //Filter Grid by Value
       this.gridApi.setQuickFilter(x);
+    },
+    removeFilter() {
+      this.gridApi.setQuickFilter(null);
     }
   }
 };
