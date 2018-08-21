@@ -22,14 +22,24 @@
     <v-layout >
       <v-flex row>
         <v-card :height="height / 2">
-          <ag-grid-vue style="width: 100%; height: 100%" class="ag-theme-balham" :columnDefs="columnDefs" :rowData="rowData"></ag-grid-vue>
+          <ag-grid-vue 
+            id="barGrid"
+            style="width: 100%; height: 100%" 
+            class="ag-theme-balham" 
+            :columnDefs="columns" 
+            :rowData="tableData" 
+            :enableSorting="true" 
+            :enableFilter="true"
+            :gridReady="onGridReady"
+            rowSelection="multiple"
+          ></ag-grid-vue>
         </v-card>
       </v-flex>
       
       <v-flex row>
         <v-card :height="height">
           <bar-chart
-          @click.native="selectEl"
+          @click.native="filterbyBar"
           :data-model="tableData"
           title="Fake Table"
       ></bar-chart>
@@ -55,34 +65,25 @@ export default {
   computed: {
     ...mapGetters(["tableData", "columns", "options", "clicked", "height"])
   },
-  beforeMount() {
-    this.columnDefs = [
-      { headerName: "x", field: "x" },
-      { headerName: "y", field: "y" }
-    ];
-    this.rowData = [
-      { x: "A", y: 13.3 },
-      { x: "B", y: 12.08 },
-      { x: "C", y: 14.62 },
-      { x: "D", y: 17.57 },
-      { x: "E", y: 14.35 }
-    ];
-  },
   methods: {
-    ...mapMutations(["selectEl"])
+    ...mapMutations(["selectEl", "setClicked"]),
+    onGridReady(params) {
+      this.gridApi = params.api;
+      this.columnApi = params.columnApi;
+    },
+    filterbyBar() {
+      //Get clicked Bar's X value from tool tip
+      let tooltip = document.getElementsByClassName("d3_visuals_tooltip")[0];
+      let x = tooltip.getElementsByTagName("b")[0].innerHTML;
+      this.$store.commit("setClicked", x);
+
+      this.gridApi.setQuickFilter(x);
+    }
   }
 };
 </script>
 
 <style>
-.grid {
-  text-align: center;
-  padding: 0 30vw;
-}
-
-.chart {
-  height: 40vw;
-}
 /* #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

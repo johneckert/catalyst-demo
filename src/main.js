@@ -23,7 +23,15 @@ const store = new Vuex.Store({
       { x: "D", y: 17.57 },
       { x: "E", y: 14.35 }
     ],
-    columns: [{ headerName: "x", field: "x" }, { headerName: "y", field: "y" }],
+    columns: [
+      {
+        headerName: "x",
+        field: "x",
+        checkboxSelection: true,
+        filter: "agTextColumnFilter"
+      },
+      { headerName: "y", field: "y" }
+    ],
     options: {},
     height: 500,
     clicked: "zfsdfsdf",
@@ -45,16 +53,14 @@ const store = new Vuex.Store({
   },
   mutations: {
     selectEl: state => {
+      //currently unused
       //Get clicked Bar's X value from tool tip
-      console.log("clicked");
       let tooltip = document.getElementsByClassName("d3_visuals_tooltip")[0];
       let x = tooltip.getElementsByTagName("b")[0].innerHTML;
-      // let inputField = document.getElementsByTagName("input")[0];
-      // console.log(inputField);
-      // inputField.value = x;
-      // state.clicked = x;
-      state.customFilters[0].callback(state.tableData, x);
-      // inputField.submit();
+      state.clicked = x;
+    },
+    setClicked: (state, payload) => {
+      state.clicked = payload;
     }
   }
 });
