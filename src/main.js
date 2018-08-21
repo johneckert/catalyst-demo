@@ -3,14 +3,16 @@ import Vuetify from "vuetify";
 import Vuex from "vuex";
 import App from "./App.vue";
 import "jscatalyst/dist/jscatalyst.min.js";
-import { ClientTable } from "vue-tables-2";
+import "../node_modules/ag-grid/dist/styles/ag-grid.css";
+import "../node_modules/ag-grid/dist/styles/ag-theme-balham.css";
+// import { ClientTable } from "vue-tables-2";
 import { ThemePlugin } from "jscatalyst";
 
 Vue.config.productionTip = false;
 
 Vue.use(Vuetify);
 Vue.use(Vuex);
-Vue.use(ClientTable, {}, true);
+// Vue.use(ClientTable, {}, true);
 
 const store = new Vuex.Store({
   state: {
@@ -21,10 +23,18 @@ const store = new Vuex.Store({
       { x: "D", y: 17.57 },
       { x: "E", y: 14.35 }
     ],
-    columns: ["x", "y"],
+    columns: [{ headerName: "x", field: "x" }, { headerName: "y", field: "y" }],
     options: {},
     height: 500,
-    clicked: "zfsdfsdf"
+    clicked: "zfsdfsdf",
+    customFilters: [
+      {
+        name: "barFilter",
+        callback: function(row, query) {
+          return row.name[0] == query;
+        }
+      }
+    ]
   },
   getters: {
     tableData: state => state.tableData,
@@ -39,7 +49,12 @@ const store = new Vuex.Store({
       console.log("clicked");
       let tooltip = document.getElementsByClassName("d3_visuals_tooltip")[0];
       let x = tooltip.getElementsByTagName("b")[0].innerHTML;
-      state.clicked = x;
+      // let inputField = document.getElementsByTagName("input")[0];
+      // console.log(inputField);
+      // inputField.value = x;
+      // state.clicked = x;
+      state.customFilters[0].callback(state.tableData, x);
+      // inputField.submit();
     }
   }
 });

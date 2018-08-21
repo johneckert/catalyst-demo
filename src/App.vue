@@ -20,18 +20,13 @@
 <v-app>
   <v-container>
     <v-layout >
-      <v-flex>
-        <v-card :height="height">
-          <v-client-table
-          name="barTable"
-        :data="tableData"
-        :columns="columns"
-        :options="options"
-        :isClientSide="true"
-      ></v-client-table>
+      <v-flex row>
+        <v-card :height="height / 2">
+          <ag-grid-vue style="width: 100%; height: 100%" class="ag-theme-balham" :columnDefs="columnDefs" :rowData="rowData"></ag-grid-vue>
         </v-card>
       </v-flex>
-      <v-flex>
+      
+      <v-flex row>
         <v-card :height="height">
           <bar-chart
           @click.native="selectEl"
@@ -48,15 +43,30 @@
 <script>
 import { D3BarChart } from "jscatalyst";
 import { mapGetters, mapMutations } from "vuex";
+import { AgGridVue } from "ag-grid-vue";
 
 export default {
   name: "app",
   mixins: ["styleTogglerMixin"],
   components: {
-    barChart: D3BarChart
+    barChart: D3BarChart,
+    AgGridVue
   },
   computed: {
     ...mapGetters(["tableData", "columns", "options", "clicked", "height"])
+  },
+  beforeMount() {
+    this.columnDefs = [
+      { headerName: "x", field: "x" },
+      { headerName: "y", field: "y" }
+    ];
+    this.rowData = [
+      { x: "A", y: 13.3 },
+      { x: "B", y: 12.08 },
+      { x: "C", y: 14.62 },
+      { x: "D", y: 17.57 },
+      { x: "E", y: 14.35 }
+    ];
   },
   methods: {
     ...mapMutations(["selectEl"])
