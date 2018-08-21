@@ -10,7 +10,7 @@ Vue.config.productionTip = false;
 
 Vue.use(Vuetify);
 Vue.use(Vuex);
-Vue.use(ClientTable);
+Vue.use(ClientTable, {}, true);
 
 const store = new Vuex.Store({
   state: {
@@ -23,17 +23,23 @@ const store = new Vuex.Store({
     ],
     columns: ["x", "y"],
     options: {},
+    height: 500,
     clicked: "zfsdfsdf"
   },
   getters: {
     tableData: state => state.tableData,
     columns: state => state.columns,
     options: state => state.options,
-    clicked: state => state.clicked
+    clicked: state => state.clicked,
+    height: state => state.height
   },
   mutations: {
-    selectEl: (state, payload) => {
-      state.clicked = payload;
+    selectEl: state => {
+      //Get clicked Bar's X value from tool tip
+      console.log("clicked");
+      let tooltip = document.getElementsByClassName("d3_visuals_tooltip")[0];
+      let x = tooltip.getElementsByTagName("b")[0].innerHTML;
+      state.clicked = x;
     }
   }
 });
