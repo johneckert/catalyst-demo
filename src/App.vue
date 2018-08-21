@@ -67,15 +67,17 @@ export default {
     ...mapGetters(["tableData", "columns", "options", "clicked", "height"])
   },
   methods: {
-    ...mapMutations(["selectEl", "setClicked"]),
+    ...mapMutations(["setClicked"]),
     onGridReady(params) {
       this.gridApi = params.api;
       this.columnApi = params.columnApi;
+      this.gridApi.sizeColumnsToFit();
     },
     setFilter() {
       //Get clicked Bar's X value from tool tip
       let tooltip = document.getElementsByClassName("d3_visuals_tooltip")[0];
       let x = null;
+
       if (tooltip.getElementsByTagName("b")[0]) {
         x = tooltip.getElementsByTagName("b")[0].innerHTML;
       }

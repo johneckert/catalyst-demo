@@ -52,13 +52,6 @@ const store = new Vuex.Store({
     height: state => state.height
   },
   mutations: {
-    selectEl: state => {
-      //currently unused
-      //Get clicked Bar's X value from tool tip
-      let tooltip = document.getElementsByClassName("d3_visuals_tooltip")[0];
-      let x = tooltip.getElementsByTagName("b")[0].innerHTML;
-      state.clicked = x;
-    },
     setClicked: (state, payload) => {
       state.clicked = payload;
     }
