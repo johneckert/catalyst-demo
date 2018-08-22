@@ -40,7 +40,6 @@ import { AgGridVue } from "ag-grid-vue";
 
 export default {
   name: "app",
-  mixins: ["styleTogglerMixin"],
   components: {
     barChart: D3BarChart,
     AgGridVue
@@ -65,21 +64,13 @@ export default {
       }
     },
     removeFilter() {
-      this.gridApi.setQuickFilter(null);
+      if (this.gridApi) {
+        this.gridApi.setQuickFilter(null);
+      }
     }
   }
 };
 </script>
 
 <style>
-:root {
-  --first: "#081a4e";
-  --second: "#092369";
-  --third: "#1a649f";
-  --fourth: "#2485b4";
-  --fifth: "#2da8c9";
-  --sixth: "#5dc1d0";
-  --seventh: "#9ad5cd";
-  --eighth: "#d5e9cb";
-}
 </style>

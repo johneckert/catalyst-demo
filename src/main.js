@@ -6,8 +6,6 @@ import "jscatalyst/dist/jscatalyst.min.js";
 import "jscatalyst/dist/jscatalyst.min.css";
 import "../node_modules/ag-grid/dist/styles/ag-grid.css";
 import "../node_modules/ag-grid/dist/styles/ag-theme-balham.css";
-// import { ClientTable } from "vue-tables-2";
-import { ThemePlugin } from "jscatalyst";
 
 Vue.config.productionTip = false;
 
@@ -40,11 +38,6 @@ const store = new Vuex.Store({
     options: state => state.options,
     height: state => state.height
   }
-});
-
-Vue.use(ThemePlugin, {
-  store,
-  themes: ["Blue", "Pink", "Green", "Brown", "Red", "Grey"]
 });
 
 new Vue({
