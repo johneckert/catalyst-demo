@@ -1,33 +1,49 @@
 <template>
-<v-app>
   <v-container>
     <v-layout >
       <v-flex row>
-        <v-card :height="height / 2.9">
-          <bar-w-grid />
+        <v-card :height="height / 2">
+          <ag-grid-vue 
+            id="barGrid"
+            style="width: 100%; height: 100%" 
+            class="ag-theme-balham" 
+            :columnDefs="columns" 
+            :rowData="barData" 
+            :enableSorting="true" 
+            :enableFilter="true"
+            :gridReady="onGridReady"
+            rowSelection="multiple"
+          ></ag-grid-vue>
+        </v-card>
+      </v-flex>
+      
+      <v-flex row>
+        <v-card :height="height">
+          <bar-chart
+          @mouseover.native="setFilter"
+          @mouseout.native="removeFilter"
+          :data-model="barData"
+          title="Bar Chart"
+      ></bar-chart>
         </v-card>
       </v-flex>
     </v-layout>
   </v-container>
-</v-app>
 </template>
 
 <script>
-import { D3BarChart } from "jscatalyst";
+import { D3BarChart, D3LineChart } from "jscatalyst";
 import { mapGetters } from "vuex";
 import { AgGridVue } from "ag-grid-vue";
-import barWGrid from "./components/BarWGrid.vue";
 
 export default {
-  name: "app",
+  name: "BarWGrid",
   components: {
     barChart: D3BarChart,
-    lineChart: D3LineChart,
-    AgGridVue,
-    barWGrid
+    AgGridVue
   },
   computed: {
-    ...mapGetters(["tableData", "columns", "options", "height"])
+    ...mapGetters(["barData", "columns", "options", "height"])
   },
   methods: {
     onGridReady(params) {
