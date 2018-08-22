@@ -1,4 +1,4 @@
-# catalyst-experimenting
+# catalyst-experiment
 
 ## To Be Addressed:
 
