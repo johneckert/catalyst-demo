@@ -33,6 +33,9 @@ export default {
   },
   created() {
     this.bc = new BroadcastChannel("bubble_channel");
+  },
+  beforeDestroy() {
+    this.bc.close();
   }
 };
 </script>

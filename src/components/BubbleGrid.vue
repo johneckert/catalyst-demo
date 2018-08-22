@@ -50,6 +50,9 @@ export default {
     this.bc.onmessage = event => {
       this.setFilter(event.data);
     };
+  },
+  beforeDestroy() {
+    this.bc.close();
   }
 };
 </script>
