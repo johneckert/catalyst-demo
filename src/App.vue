@@ -1,27 +1,9 @@
 <template>
-  <!-- <div id="app">
-    <div class="grid">
-      <v-client-table
-        :data="tableData"
-        :columns="columns"
-        :options="options"
-        :isClientSide="true"
-      ></v-client-table>
-    </div>
-    <div class="chart">
-      <div @click="selectEl(event.target)" style="height:400px">
-        <bar-chart
-          :data-model="tableData"
-          title="Fake Table"
-      ></bar-chart>
-      </div>
-    </div>
-  </div> -->
 <v-app>
   <v-container>
     <v-layout >
       <v-flex row>
-        <v-card :height="height / 2">
+        <v-card :height="height / 2.9">
           <ag-grid-vue 
             id="barGrid"
             style="width: 100%; height: 100%" 
@@ -37,7 +19,7 @@
       </v-flex>
       
       <v-flex row>
-        <v-card :height="height">
+        <v-card :height="height" p3>
           <bar-chart
           @mouseover.native="setFilter"
           @mouseout.native="removeFilter"
@@ -90,12 +72,4 @@ export default {
 </script>
 
 <style>
-/* #app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-} */
 </style>

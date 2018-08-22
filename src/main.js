@@ -3,6 +3,7 @@ import Vuetify from "vuetify";
 import Vuex from "vuex";
 import App from "./App.vue";
 import "jscatalyst/dist/jscatalyst.min.js";
+import "jscatalyst/dist/jscatalyst.min.css";
 import "../node_modules/ag-grid/dist/styles/ag-grid.css";
 import "../node_modules/ag-grid/dist/styles/ag-theme-balham.css";
 // import { ClientTable } from "vue-tables-2";
@@ -25,10 +26,10 @@ const store = new Vuex.Store({
     ],
     columns: [
       {
-        headerName: "x",
+        headerName: "X Value",
         field: "x"
       },
-      { headerName: "y", field: "y" }
+      { headerName: "Y Value", field: "y" }
     ],
     options: {},
     height: 500
