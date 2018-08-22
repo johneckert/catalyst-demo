@@ -17,7 +17,7 @@ Vue.use(Vuetify);
 Vue.use(VueRouter);
 Vue.use(Vuex);
 
-const router = new VueRouter({ routes });
+const router = new VueRouter({ mode: "history", routes });
 
 const store = new Vuex.Store({
   state: {
