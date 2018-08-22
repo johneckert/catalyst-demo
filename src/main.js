@@ -26,35 +26,18 @@ const store = new Vuex.Store({
     columns: [
       {
         headerName: "x",
-        field: "x",
-        checkboxSelection: true,
-        filter: "agTextColumnFilter"
+        field: "x"
       },
       { headerName: "y", field: "y" }
     ],
     options: {},
-    height: 500,
-    clicked: "zfsdfsdf",
-    customFilters: [
-      {
-        name: "barFilter",
-        callback: function(row, query) {
-          return row.name[0] == query;
-        }
-      }
-    ]
+    height: 500
   },
   getters: {
     tableData: state => state.tableData,
     columns: state => state.columns,
     options: state => state.options,
-    clicked: state => state.clicked,
     height: state => state.height
-  },
-  mutations: {
-    setClicked: (state, payload) => {
-      state.clicked = payload;
-    }
   }
 });
 

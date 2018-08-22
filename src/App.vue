@@ -53,7 +53,7 @@
 
 <script>
 import { D3BarChart } from "jscatalyst";
-import { mapGetters, mapMutations } from "vuex";
+import { mapGetters } from "vuex";
 import { AgGridVue } from "ag-grid-vue";
 
 export default {
@@ -64,26 +64,23 @@ export default {
     AgGridVue
   },
   computed: {
-    ...mapGetters(["tableData", "columns", "options", "clicked", "height"])
+    ...mapGetters(["tableData", "columns", "options", "height"])
   },
   methods: {
-    ...mapMutations(["setClicked"]),
     onGridReady(params) {
       this.gridApi = params.api;
       this.columnApi = params.columnApi;
       this.gridApi.sizeColumnsToFit();
     },
     setFilter() {
-      //Get clicked Bar's X value from tool tip
       let tooltip = document.getElementsByClassName("d3_visuals_tooltip")[0];
       let x = null;
-
       if (tooltip.getElementsByTagName("b")[0]) {
         x = tooltip.getElementsByTagName("b")[0].innerHTML;
       }
-      this.$store.commit("setClicked", x);
-      //Filter Grid by Value
-      this.gridApi.setQuickFilter(x);
+      if (this.gridApi) {
+        this.gridApi.setQuickFilter(x);
+      }
     },
     removeFilter() {
       this.gridApi.setQuickFilter(null);
