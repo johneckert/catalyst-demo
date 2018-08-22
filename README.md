@@ -1,21 +1,6 @@
-# catalyst-demo
+# catalyst-experimenting
 
-## Project setup
-```
-npm install
-```
+## To Be Addressed:
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
+- there should be events raised when you mouse over an SVG component that pass it's data
+- Docs pg 24: data example image headings: is an object w/o a key? - I believe it should just be the array

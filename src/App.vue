@@ -19,7 +19,7 @@
       </v-flex>
       
       <v-flex row>
-        <v-card :height="height" p3>
+        <v-card :height="height">
           <bar-chart
           @mouseover.native="setFilter"
           @mouseout.native="removeFilter"
@@ -72,4 +72,14 @@ export default {
 </script>
 
 <style>
+:root {
+  --first: "#081a4e";
+  --second: "#092369";
+  --third: "#1a649f";
+  --fourth: "#2485b4";
+  --fifth: "#2da8c9";
+  --sixth: "#5dc1d0";
+  --seventh: "#9ad5cd";
+  --eighth: "#d5e9cb";
+}
 </style>
