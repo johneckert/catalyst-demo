@@ -11,6 +11,7 @@
             :enableFilter="true"
             :gridReady="onGridReady"
             rowSelection="multiple"
+            @click.native="removeFilter"
           ></ag-grid-vue>
         </v-card>
       </v-flex>  
@@ -33,14 +34,9 @@ export default {
       this.columnApi = params.columnApi;
       this.gridApi.sizeColumnsToFit();
     },
-    setFilter() {
-      let tooltip = document.getElementsByClassName("d3_visuals_tooltip")[0];
-      let x = null;
-      if (tooltip.getElementsByTagName("b")[0]) {
-        x = tooltip.getElementsByTagName("b")[0].innerHTML;
-      }
+    setFilter(label) {
       if (this.gridApi) {
-        this.gridApi.setQuickFilter(x);
+        this.gridApi.setQuickFilter(label);
       }
     },
     removeFilter() {
@@ -48,9 +44,13 @@ export default {
         this.gridApi.setQuickFilter(null);
       }
     }
+  },
+  created() {
+    this.bc = new BroadcastChannel("bubble_channel");
+    this.bc.onmessage = event => {
+      this.setFilter(event.data);
+    };
   }
-};
-</script>
 };
 </script>
 <style>
