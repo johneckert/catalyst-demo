@@ -7,7 +7,7 @@
             id="barGrid"
             style="width: 100%; height: 100%" 
             class="ag-theme-balham" 
-            :columnDefs="columns" 
+            :columnDefs="barColumns" 
             :rowData="barData" 
             :enableSorting="true" 
             :enableFilter="true"
@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import { D3BarChart, D3LineChart } from "jscatalyst";
+import { D3BarChart } from "jscatalyst";
 import { mapGetters } from "vuex";
 import { AgGridVue } from "ag-grid-vue";
 
@@ -43,7 +43,7 @@ export default {
     AgGridVue
   },
   computed: {
-    ...mapGetters(["barData", "columns", "options", "height"])
+    ...mapGetters(["barData", "barColumns", "options", "height"])
   },
   methods: {
     onGridReady(params) {

@@ -8,6 +8,8 @@ import "jscatalyst/dist/jscatalyst.min.css";
 import "../node_modules/ag-grid/dist/styles/ag-grid.css";
 import "../node_modules/ag-grid/dist/styles/ag-theme-balham.css";
 import { routes } from "./routes/routes";
+import { barData, barColumns } from "./mockData/barData";
+import { bubbleData, bubbleColumns } from "./mockData/bubbleData";
 
 Vue.config.productionTip = false;
 
@@ -19,28 +21,20 @@ const router = new VueRouter({ routes });
 
 const store = new Vuex.Store({
   state: {
-    barData: [
-      { x: "A", y: 13.3 },
-      { x: "B", y: 12.08 },
-      { x: "C", y: 14.62 },
-      { x: "D", y: 17.57 },
-      { x: "E", y: 14.35 }
-    ],
-    columns: [
-      {
-        headerName: "X Value",
-        field: "x"
-      },
-      { headerName: "Y Value", field: "y" }
-    ],
+    barData,
+    barColumns,
+    bubbleData,
+    bubbleColumns,
     options: {},
     height: 500
   },
   getters: {
     barData: state => state.barData,
-    columns: state => state.columns,
+    barColumns: state => state.barColumns,
     options: state => state.options,
-    height: state => state.height
+    height: state => state.height,
+    bubbleData: state => state.bubbleData,
+    bubbleColumns: state => state.bubbleColumns
   }
 });
 

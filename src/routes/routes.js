@@ -14,7 +14,7 @@ export const routes = [
     name: "bubbleChart"
   },
   {
-    path: "/bubbleGrid",
+    path: "/bubblegrid",
     component: BubbleGrid,
     name: "bubbleGrid"
   },
