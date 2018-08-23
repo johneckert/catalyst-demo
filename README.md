@@ -1,8 +1,11 @@
-# catalyst-experiment
+## catalyst-experiment
 
-## To Be Addressed:
+#### Bar Chart and Grid
 
-- there should be events raised when you mouse over an SVG component that pass it's data
-- Docs pg 24: data example image headings: is an object w/o a key? - I believe it should just be the array
-- for documentation v-cards & catalyst components require @click.native to add a click function
-- improve theme mixin implementation
+visit '/' for page using JSCatalyst D3BarChart component and ag-grid. Uses JSCatalyst component's custom mouseover event to filter data in chart.
+
+#### Bubble Chart and Grid
+
+visit 'bubblechart' in one window and '/bubblegrid' in a second window.
+
+Uses JSCatalyst component's custom event and Broadcat Chanel API to filter grid in a seperate window.
