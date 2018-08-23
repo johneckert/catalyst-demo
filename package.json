@@ -10,7 +10,7 @@
   "dependencies": {
     "ag-grid": "^18.1.2",
     "ag-grid-vue": "^18.1.0",
-    "jscatalyst": "^1.1.22",
+    "jscatalyst": "^1.1.23",
     "stylus-loader": "^3.0.2",
     "vue": "^2.5.17",
     "vue-router": "^3.0.1",
