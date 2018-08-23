@@ -20,7 +20,7 @@
       <v-flex row>
         <v-card :height="height">
           <bar-chart
-          @mouseover.native="setFilter"
+          @jsc_mouseover="setFilter"
           @mouseout.native="removeFilter"
           :data-model="barData"
           title="Bar Chart"
@@ -51,12 +51,8 @@ export default {
       this.columnApi = params.columnApi;
       this.gridApi.sizeColumnsToFit();
     },
-    setFilter() {
-      let tooltip = document.getElementsByClassName("d3_visuals_tooltip")[0];
-      let x = null;
-      if (tooltip.getElementsByTagName("b")[0]) {
-        x = tooltip.getElementsByTagName("b")[0].innerHTML;
-      }
+    setFilter(data) {
+      let x = data.x;
       if (this.gridApi) {
         this.gridApi.setQuickFilter(x);
       }
