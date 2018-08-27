@@ -5,6 +5,8 @@ import BoxPlotWGrid from "../components/BoxPlotWGrid.vue";
 import BulletChartWGrid from "../components/BulletChartWGrid.vue";
 import DendrogramMouse from "../components/DendrogramMouse.vue";
 import DifferenceWGrid from "../components/DifferenceWGrid.vue";
+import ForceGraph from "../components/Force.vue";
+import GantWGrid from "../components/GanttWGrid.vue";
 
 export const routes = [
   { path: "", component: BarWGrid, name: "BarWGrid" },
@@ -18,5 +20,7 @@ export const routes = [
   },
   { path: "/dendrogram", component: DendrogramMouse, name: "DendrogramMouse" },
   { path: "/difference", component: DifferenceWGrid, name: "DifferenceWGrid" },
+  { path: "/force", component: ForceGraph, name: "ForceGraph" },
+  { path: "/gantt", component: GantWGrid, name: "GanttWGrid" },
   { path: "*", redirect: "/" }
 ];
