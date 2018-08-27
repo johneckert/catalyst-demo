@@ -1,6 +1,7 @@
 import BarWGrid from "../components/BarWGrid.vue";
 import BubbleChart from "../components/BubbleChart.vue";
 import BubbleGrid from "../components/BubbleGrid.vue";
+import BoxPlotWGrid from "../components/BoxPlotWGrid.vue";
 
 export const routes = [
   {
@@ -17,6 +18,11 @@ export const routes = [
     path: "/bubblegrid",
     component: BubbleGrid,
     name: "bubbleGrid"
+  },
+  {
+    path: "/boxplot",
+    component: BoxPlotWGrid,
+    name: "BoxPlotWGrid"
   },
   {
     path: "*",

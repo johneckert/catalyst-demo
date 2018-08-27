@@ -10,6 +10,7 @@ import "../node_modules/ag-grid/dist/styles/ag-theme-balham.css";
 import { routes } from "./routes/routes";
 import { barData, barColumns } from "./mockData/barData";
 import { bubbleData, bubbleColumns } from "./mockData/bubbleData";
+import { boxPlotData, boxPlotColumns } from "./mockData/boxPlotData";
 
 Vue.config.productionTip = false;
 
@@ -25,6 +26,8 @@ const store = new Vuex.Store({
     barColumns,
     bubbleData,
     bubbleColumns,
+    boxPlotData,
+    boxPlotColumns,
     options: {},
     height: 500
   },
@@ -34,7 +37,9 @@ const store = new Vuex.Store({
     options: state => state.options,
     height: state => state.height,
     bubbleData: state => state.bubbleData,
-    bubbleColumns: state => state.bubbleColumns
+    bubbleColumns: state => state.bubbleColumns,
+    boxPlotData: state => state.boxPlotData,
+    boxPlotColumns: state => state.boxPlotColumns
   }
 });
 
