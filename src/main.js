@@ -11,6 +11,7 @@ import { routes } from "./routes/routes";
 import { barData, barColumns } from "./mockData/barData";
 import { bubbleData, bubbleColumns } from "./mockData/bubbleData";
 import { boxPlotData, boxPlotColumns } from "./mockData/boxPlotData";
+import { bulletData, bulletColumns } from "./mockData/bulletData";
 import { dendroData } from "./mockData/dendroData";
 
 Vue.config.productionTip = false;
@@ -29,6 +30,8 @@ const store = new Vuex.Store({
     bubbleColumns,
     boxPlotData,
     boxPlotColumns,
+    bulletData,
+    bulletColumns,
     dendroData,
     options: {},
     height: 500
@@ -42,6 +45,8 @@ const store = new Vuex.Store({
     bubbleColumns: state => state.bubbleColumns,
     boxPlotData: state => state.boxPlotData,
     boxPlotColumns: state => state.boxPlotColumns,
+    bulletData: state => state.bulletData,
+    bulletColumns: state => state.bulletColumns,
     dendroData: state => state.dendroData
   }
 });
