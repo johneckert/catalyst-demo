@@ -20,6 +20,8 @@
       <v-flex row>
         <v-card :height="height">
           <bar-chart
+          xaxis-label="x"
+          yaxis-label="y"
           @jsc_mouseover="setFilter"
           @mouseout.native="removeFilter"
           :data-model="barData"

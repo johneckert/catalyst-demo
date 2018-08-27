@@ -37,7 +37,7 @@ import { mapGetters } from "vuex";
 import { AgGridVue } from "ag-grid-vue";
 
 export default {
-  name: "BarWGrid",
+  name: "BoxPlotWGrid",
   components: {
     boxPlot: D3BoxPlot,
     AgGridVue
