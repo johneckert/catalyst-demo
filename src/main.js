@@ -13,6 +13,7 @@ import { bubbleData, bubbleColumns } from "./mockData/bubbleData";
 import { boxPlotData, boxPlotColumns } from "./mockData/boxPlotData";
 import { bulletData, bulletColumns } from "./mockData/bulletData";
 import { dendroData } from "./mockData/dendroData";
+import { diffData, diffColumns } from "./mockData/differenceData";
 
 Vue.config.productionTip = false;
 
@@ -33,6 +34,8 @@ const store = new Vuex.Store({
     bulletData,
     bulletColumns,
     dendroData,
+    diffData,
+    diffColumns,
     options: {},
     height: 500
   },
@@ -47,7 +50,9 @@ const store = new Vuex.Store({
     boxPlotColumns: state => state.boxPlotColumns,
     bulletData: state => state.bulletData,
     bulletColumns: state => state.bulletColumns,
-    dendroData: state => state.dendroData
+    dendroData: state => state.dendroData,
+    diffData: state => state.diffData,
+    diffColumns: state => state.diffColumns
   }
 });
 

@@ -4,6 +4,7 @@ import BubbleGrid from "../components/BubbleGrid.vue";
 import BoxPlotWGrid from "../components/BoxPlotWGrid.vue";
 import BulletChartWGrid from "../components/BulletChartWGrid.vue";
 import DendrogramMouse from "../components/DendrogramMouse.vue";
+import DifferenceWGrid from "../components/DifferenceWGrid.vue";
 
 export const routes = [
   { path: "", component: BarWGrid, name: "BarWGrid" },
@@ -16,5 +17,6 @@ export const routes = [
     name: "BulletChartWGrid"
   },
   { path: "/dendrogram", component: DendrogramMouse, name: "DendrogramMouse" },
+  { path: "/difference", component: DifferenceWGrid, name: "DifferenceWGrid" },
   { path: "*", redirect: "/" }
 ];
