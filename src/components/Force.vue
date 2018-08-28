@@ -21,7 +21,7 @@
         <v-card :height="height">
           <force-graph
           @jsc_mouseover="testEvent"
-          @mouseout.native="testEvent"
+          @jsc_click="testEvent"
           :data-model="forceData"
           title="Force Graph"
       ></force-graph>

@@ -70,7 +70,15 @@ const store = new Vuex.Store({
     heatData: state => state.heatData,
     heatColumns: state => state.heatColumns,
     histogramData: state => state.histogramData,
-    histogramColumns: state => state.histogramColumns
+    histogramColumns: state => state.histogramColumns,
+    rowData: state => {
+      const convertedData = [];
+      state.histogramData.map(dataPoint => {
+        let dataObj = { value: dataPoint };
+        convertedData.push(dataObj);
+      });
+      return convertedData;
+    }
   }
 });
 

@@ -10,12 +10,12 @@
   "dependencies": {
     "ag-grid": "^18.1.2",
     "ag-grid-vue": "^18.1.0",
-    "jscatalyst": "^1.1.26",
+    "jscatalyst": "^1.1.27",
     "stylus-loader": "^3.0.2",
     "vue": "^2.5.17",
     "vue-router": "^3.0.1",
     "vue-tables-2": "^1.4.64",
-    "vuetify": "^1.1.14",
+    "vuetify": "^1.2.0",
     "vuex": "^3.0.1"
   },
   "devDependencies": {

@@ -19,7 +19,6 @@
       <v-flex row>
         <v-card :height="height">
           <gantt-chart
-           style="height:100%"
             @jsc_mouseover="logMouseover"
             @jsc_click="logClick"
             :data-model="ganttData"

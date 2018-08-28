@@ -8,7 +8,7 @@
             style="width: 100%; height: 100%" 
             class="ag-theme-balham" 
             :columnDefs="histogramColumns" 
-            :rowData="histogramData" 
+            :rowData="rowData" 
             :enableSorting="true" 
             :enableFilter="true"
             :gridReady="onGridReady"
@@ -21,8 +21,9 @@
       <v-flex xs12>
         <v-card :height="height">
           <histogram
-          @jsc_mouseover="test"
-          @jsc_click="toggleClicked"
+          @jsc_mouseover="setFilter"
+          @mouseout.native="removeFilter"
+          @jsc_click="handleClick"
           :data-model="histogramData"
           title="histogram"
       ></histogram>
@@ -50,7 +51,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["histogramData", "histogramColumns", "height"])
+    ...mapGetters(["histogramData", "rowData", "histogramColumns", "height"])
   },
   methods: {
     onGridReady(params) {
@@ -58,20 +59,38 @@ export default {
       this.columnApi = params.columnApi;
       this.gridApi.sizeColumnsToFit();
     },
-    handleMouseOver(event) {
-      this.selectedEl = event.data.name
-        .split("-")
-        .join(" ")
-        .toUpperCase();
+    formatRows(histogramData) {
+      const convertedData = [];
+      histogramData.map(dataPoint => {
+        let dataObj = { value: dataPoint };
+        convertedData.push(dataObj);
+      });
+      return convertedData;
     },
-    handleClick(event) {
-      console.log(event);
+    selectRow(val) {
+      this.gridOptionsApi.forEachInMemory(function(node) {
+        if ((node.data.value = val)) {
+          this.gridOptionsApi.selectNode(node, true);
+        }
+      });
     },
-    toggleClicked() {
-      this.clicked = !this.clicked;
+    setFilter(data) {
+      if (this.gridApi) {
+        data.forEach(item => {
+          this.selectRow(item);
+        });
+      }
     },
-    test(event) {
-      console.log(event);
+    removeFilter() {
+      if (this.gridApi) {
+        this.gridApi.setQuickFilter(null);
+      }
+    },
+    handleClick(data) {
+      console.log(data);
+    },
+    test(data) {
+      console.log(data);
     }
   }
 };

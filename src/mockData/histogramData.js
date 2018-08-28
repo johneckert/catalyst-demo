@@ -5,7 +5,7 @@ export const histogramColumns = [
   }
 ];
 
-const rawData = [
+export const histogramData = [
   30.447270242374888,
   17.854190403748056,
   14.035892291270056,
@@ -1007,16 +1007,3 @@ const rawData = [
   27.618473909627944,
   38.24186442519321
 ];
-
-export const histogramData = formatRows(rawData);
-
-function formatRows(array) {
-  const convertedData = [];
-
-  array.map(dataPoint => {
-    let dataObj = { value: dataPoint };
-    convertedData.push(dataObj);
-  });
-
-  return convertedData;
-}
