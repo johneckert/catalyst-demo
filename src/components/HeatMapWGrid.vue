@@ -7,8 +7,8 @@
             id="boxGrid"
             style="width: 100%; height: 100%" 
             class="ag-theme-balham" 
-            :columnDefs="ganttColumns" 
-            :rowData="ganttData" 
+            :columnDefs="heatColumns" 
+            :rowData="heatData" 
             :enableSorting="true" 
             :enableFilter="true"
             :gridReady="onGridReady"
@@ -18,13 +18,13 @@
       
       <v-flex row>
         <v-card :height="height">
-          <gantt-chart
+          <heat-map
            style="height:100%"
             @jsc_mouseover="logMouseover"
             @jsc_click="logClick"
-            :data-model="ganttData"
-            title="Gantt Chart"
-          ></gantt-chart>
+            :data-model="heatData"
+            title="Heat Map"
+          ></heat-map>
         </v-card>
       </v-flex>
     </v-layout>
@@ -32,18 +32,18 @@
 </template>
 
 <script>
-import { D3GanttChart } from "jscatalyst";
+import { D3HeatMap } from "jscatalyst";
 import { mapGetters } from "vuex";
 import { AgGridVue } from "ag-grid-vue";
 
 export default {
-  name: "GanttWGrid",
+  name: "HeatMaptWGrid",
   components: {
-    ganttChart: D3GanttChart,
+    heatMap: D3HeatMap,
     AgGridVue
   },
   computed: {
-    ...mapGetters(["ganttData", "ganttColumns", "options", "height"])
+    ...mapGetters(["heatData", "heatColumns", "options", "height"])
   },
   methods: {
     onGridReady(params) {

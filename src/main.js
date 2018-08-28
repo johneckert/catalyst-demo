@@ -16,6 +16,7 @@ import { dendroData } from "./mockData/dendroData";
 import { diffData, diffColumns } from "./mockData/differenceData";
 import { forceData } from "./mockData/forceData";
 import { ganttData, ganttColumns } from "./mockData/ganttData";
+import { heatData, heatColumns } from "./mockData/heatData";
 
 Vue.config.productionTip = false;
 
@@ -41,6 +42,8 @@ const store = new Vuex.Store({
     forceData,
     ganttData,
     ganttColumns,
+    heatData,
+    heatColumns,
     options: {},
     height: 500
   },
@@ -60,7 +63,9 @@ const store = new Vuex.Store({
     diffColumns: state => state.diffColumns,
     forceData: state => state.forceData,
     ganttData: state => state.ganttData,
-    ganttColumns: state => state.ganttColumns
+    ganttColumns: state => state.ganttColumns,
+    heatData: state => state.heatData,
+    heatColumns: state => state.heatColumns
   }
 });
 

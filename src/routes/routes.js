@@ -7,6 +7,7 @@ import DendrogramMouse from "../components/DendrogramMouse.vue";
 import DifferenceWGrid from "../components/DifferenceWGrid.vue";
 import ForceGraph from "../components/Force.vue";
 import GantWGrid from "../components/GanttWGrid.vue";
+import HeatMapWGrid from "../components/HeatMapWGrid.vue";
 
 export const routes = [
   { path: "", component: BarWGrid, name: "BarWGrid" },
@@ -22,5 +23,6 @@ export const routes = [
   { path: "/difference", component: DifferenceWGrid, name: "DifferenceWGrid" },
   { path: "/force", component: ForceGraph, name: "ForceGraph" },
   { path: "/gantt", component: GantWGrid, name: "GanttWGrid" },
+  { path: "/heat", component: HeatMapWGrid, name: "HeatMapWGrid" },
   { path: "*", redirect: "/" }
 ];
