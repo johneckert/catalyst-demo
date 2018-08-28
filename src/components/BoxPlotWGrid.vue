@@ -1,7 +1,7 @@
 <template>
-  <v-container>
-    <v-layout >
-      <v-flex row>
+  <v-container grid-list-md text-xs-center>
+    <v-layout row wrap>
+      <v-flex xs12>
         <v-card :height="height / 2">
           <ag-grid-vue 
             id="boxGrid"
@@ -16,12 +16,20 @@
           ></ag-grid-vue>
         </v-card>
       </v-flex>
-      
-      <v-flex row>
+      <v-flex xs-12>
+        <v-card>
+          <span>Label: {{current.label}}</span>
+          <span>Max: {{current.max}}</span>
+          <span>Quartile 3: {{current.quartile3}}</span>
+          <span>Median: {{current.median}}</span>
+          <span>Quartile 1: {{current.quartile1}}</span>
+          <span>Min: {{current.min}}</span>
+        </v-card>
+      </v-flex>
+      <v-flex xs12>
         <v-card :height="height">
           <box-plot
-          @jsc_mouseover="logMouseover"
-          @jsc_click="logClick"
+          @jsc_mouseover="handleMouseover"
           :data-model="boxPlotData"
           title="Box Plot"
       ></box-plot>
@@ -41,6 +49,18 @@ export default {
   components: {
     boxPlot: D3BoxPlot,
     AgGridVue
+  },
+  data() {
+    return {
+      current: {
+        label: "",
+        max: 0,
+        median: 0,
+        min: 0,
+        quartile1: 0,
+        quartile3: 0
+      }
+    };
   },
   computed: {
     ...mapGetters(["boxPlotData", "boxPlotColumns", "options", "height"])
@@ -62,11 +82,16 @@ export default {
         this.gridApi.setQuickFilter(null);
       }
     },
-    logMouseover(data) {
-      console.log(data);
-    },
-    logClick(data) {
-      console.log(data);
+    handleMouseover(data) {
+      let dataObj = {
+        label: data.label,
+        max: data.max,
+        median: data.median,
+        min: data.min,
+        quartile1: data.quartile1,
+        quartile3: data.quartile3
+      };
+      this.current = dataObj;
     }
   }
 };
