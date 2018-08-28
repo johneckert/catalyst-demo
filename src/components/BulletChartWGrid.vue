@@ -55,7 +55,7 @@ export default {
       this.gridApi.sizeColumnsToFit();
     },
     logEvent(data) {
-      console.log(event);
+      console.log(data);
     },
     setFilter(data) {
       let x = data.x;

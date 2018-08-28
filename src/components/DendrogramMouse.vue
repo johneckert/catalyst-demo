@@ -48,8 +48,8 @@ export default {
         .join(" ")
         .toUpperCase();
     },
-    handleClick(event) {
-      console.log(event);
+    handleClick(data) {
+      console.log(data);
     },
     toggleClicked() {
       this.clicked = !this.clicked;

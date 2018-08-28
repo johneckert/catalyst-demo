@@ -62,11 +62,11 @@ export default {
         this.gridApi.setQuickFilter(null);
       }
     },
-    logMouseover() {
-      console.log(event);
+    logMouseover(data) {
+      console.log(data);
     },
-    logClick() {
-      console.log(event);
+    logClick(data) {
+      console.log(data);
     }
   }
 };
