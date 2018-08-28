@@ -20,8 +20,9 @@
       <v-flex row>
         <v-card :height="height">
           <difference-chart
-          @jsc_mouseover="logMouseover"
-          @jsc_click="logClick"
+          @jsc_mouseover="setFilter"
+          @jsc_click="setFilter"
+          @mouseout.native="removeFilter"
           :data-model="diffData"
           title="Difference Chart"
       ></difference-chart>
@@ -52,9 +53,9 @@ export default {
       this.gridApi.sizeColumnsToFit();
     },
     setFilter(data) {
-      let x = data.x;
+      let date = this.dateToString(data);
       if (this.gridApi) {
-        this.gridApi.setQuickFilter(x);
+        this.gridApi.setQuickFilter(date);
       }
     },
     removeFilter() {
@@ -62,11 +63,18 @@ export default {
         this.gridApi.setQuickFilter(null);
       }
     },
-    logClick(data) {
-      console.log("click", data);
-    },
-    logMouseover(data) {
-      console.log("mouse", data);
+    dateToString(node) {
+      let clickDate = new Date(node.date);
+      let year = clickDate.getFullYear();
+      let day = clickDate.getDate();
+      let month = clickDate.getMonth() + 1;
+      if (day < 10) {
+        day = "0" + day;
+      }
+      if (month < 10) {
+        month = "0" + month;
+      }
+      return `${year}-${month}-${day}`;
     }
   }
 };
