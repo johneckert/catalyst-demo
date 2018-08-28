@@ -4,6 +4,7 @@
       <v-flex row>
         <v-card :height="height / 2">
           <ag-grid-vue 
+            @mouseover.native="removeFilter"
             id="bulletGrid"
             style="width: 100%; height: 100%" 
             class="ag-theme-balham" 
@@ -23,8 +24,7 @@
           xaxis-label="x"
           yaxis-label="y"
           @jsc_click="logEvent"
-          @jsc_mouseover="logEvent"
-          @mouseout.native="removeFilter"
+          @jsc_mouseover="setFilter"
           :data-model="bulletData"
           title="Bullet Chart"
       ></bullet-chart>
@@ -58,9 +58,9 @@ export default {
       console.log(data);
     },
     setFilter(data) {
-      let x = data.x;
+      let title = data.title;
       if (this.gridApi) {
-        this.gridApi.setQuickFilter(x);
+        this.gridApi.setQuickFilter(title);
       }
     },
     removeFilter() {
