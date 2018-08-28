@@ -2,26 +2,26 @@
   <v-container>
     <v-layout >
       <v-flex row>
-        <!-- <v-card :height="height / 2">
+        <v-card :height="height / 1.5">
           <ag-grid-vue 
             id="barGrid"
             style="width: 100%; height: 100%" 
             class="ag-theme-balham" 
-            :columnDefs="barColumns" 
-            :rowData="barData" 
+            :columnDefs="forceColumns" 
+            :rowData="forceData.nodes" 
             :enableSorting="true" 
             :enableFilter="true"
             :gridReady="onGridReady"
             rowSelection="multiple"
           ></ag-grid-vue>
-        </v-card> -->
+        </v-card>
       </v-flex>
       
       <v-flex row>
         <v-card :height="height">
           <force-graph
-          @jsc_mouseover="testEvent"
-          @jsc_click="testEvent"
+          @jsc_mouseover="groupFilter"
+          @jsc_click="nameFilter"
           :data-model="forceData"
           title="Force Graph"
       ></force-graph>
@@ -43,7 +43,7 @@ export default {
     AgGridVue
   },
   computed: {
-    ...mapGetters(["forceData", "barColumns", "options", "height"])
+    ...mapGetters(["forceData", "forceColumns", "height"])
   },
   methods: {
     onGridReady(params) {
@@ -51,10 +51,16 @@ export default {
       this.columnApi = params.columnApi;
       this.gridApi.sizeColumnsToFit();
     },
-    setFilter(data) {
-      let x = data.x;
+    groupFilter(data) {
+      let group = data.group.toString();
       if (this.gridApi) {
-        this.gridApi.setQuickFilter(x);
+        this.gridApi.setQuickFilter(group);
+      }
+    },
+    nameFilter(data) {
+      let id = data.id;
+      if (this.gridApi) {
+        this.gridApi.setQuickFilter(id);
       }
     },
     removeFilter() {

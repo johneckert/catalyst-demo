@@ -14,7 +14,7 @@ import { boxPlotData, boxPlotColumns } from "./mockData/boxPlotData";
 import { bulletData, bulletColumns } from "./mockData/bulletData";
 import { dendroData } from "./mockData/dendroData";
 import { diffData, diffColumns } from "./mockData/differenceData";
-import { forceData } from "./mockData/forceData";
+import { forceData, forceColumns } from "./mockData/forceData";
 import { ganttData, ganttColumns } from "./mockData/ganttData";
 import { heatData, heatColumns } from "./mockData/heatData";
 import { histogramData, histogramColumns } from "./mockData/histogramData";
@@ -41,6 +41,7 @@ const store = new Vuex.Store({
     diffData,
     diffColumns,
     forceData,
+    forceColumns,
     ganttData,
     ganttColumns,
     heatData,
@@ -65,6 +66,7 @@ const store = new Vuex.Store({
     diffData: state => state.diffData,
     diffColumns: state => state.diffColumns,
     forceData: state => state.forceData,
+    forceColumns: state => state.forceColumns,
     ganttData: state => state.ganttData,
     ganttColumns: state => state.ganttColumns,
     heatData: state => state.heatData,

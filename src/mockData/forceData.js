@@ -1,3 +1,16 @@
+export const forceColumns = [
+  {
+    headerName: "Name",
+    field: "id",
+    filter: "agTextColumnFilter"
+  },
+  {
+    headerName: "Group",
+    field: "group",
+    filter: "agNumberColumnFilter"
+  }
+];
+
 export const forceData = {
   nodes: [
     { id: "Myriel", group: 1 },
