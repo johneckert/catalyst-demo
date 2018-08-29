@@ -11,6 +11,7 @@ import HeatMapWGrid from "../components/HeatMapWGrid.vue";
 import HistogramWMouse from "../components/HistogramWMouse.vue";
 import LineChartWGrid from "../components/LineChartWGrid.vue";
 import LineChartZoom from "../components/LineChartZoom.vue";
+import LinePlotWGrid from "../components/LinePlotWGrid.vue";
 
 export const routes = [
   { path: "/bar", component: BarWGrid, name: "BarWGrid" },
@@ -28,7 +29,8 @@ export const routes = [
   { path: "/gantt", component: GantWGrid, name: "GanttWGrid" },
   { path: "/heat", component: HeatMapWGrid, name: "HeatMapWGrid" },
   { path: "/histogram", component: HistogramWMouse, name: "HistogramWMouse" },
-  { path: "/line", component: LineChartWGrid, name: "LineChartWGrid" },
+  { path: "/line-chart", component: LineChartWGrid, name: "LineChartWGrid" },
   { path: "/zoom", component: LineChartZoom, name: "LineChartZoom" },
+  { path: "/line-plot", component: LinePlotWGrid, name: "LinePlotWGrid" },
   { path: "*", redirect: "/bar" }
 ];

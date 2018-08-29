@@ -19,6 +19,7 @@ import { ganttData, ganttColumns } from "./mockData/ganttData";
 import { heatData, heatColumns } from "./mockData/heatData";
 import { histogramData, histogramColumns } from "./mockData/histogramData";
 import { lineData, lineColumns } from "./mockData/lineChartData";
+import { linePlotData, linePlotColumns } from "./mockData/linePlotData";
 
 Vue.config.productionTip = false;
 
@@ -51,6 +52,8 @@ const store = new Vuex.Store({
     histogramColumns,
     lineData,
     lineColumns,
+    linePlotData,
+    linePlotColumns,
     options: {},
     height: 500
   },
@@ -85,7 +88,9 @@ const store = new Vuex.Store({
       return convertedData;
     },
     lineColumns: state => state.lineColumns,
-    lineData: state => state.lineData
+    lineData: state => state.lineData,
+    linePlotColumns: state => state.linePlotColumns,
+    linePlotData: state => state.linePlotData
   }
 });
 
