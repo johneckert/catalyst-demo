@@ -18,6 +18,7 @@ import { forceData, forceColumns } from "./mockData/forceData";
 import { ganttData, ganttColumns } from "./mockData/ganttData";
 import { heatData, heatColumns } from "./mockData/heatData";
 import { histogramData, histogramColumns } from "./mockData/histogramData";
+import { lineData, lineColumns } from "./mockData/lineChartData";
 
 Vue.config.productionTip = false;
 
@@ -48,23 +49,12 @@ const store = new Vuex.Store({
     heatColumns,
     histogramData,
     histogramColumns,
+    lineData,
+    lineColumns,
     options: {},
-    height: 500,
-    charts: [
-      { title: "bar chart", link: "/bar" },
-      { title: "box chart", link: "/box" },
-      { title: "bubble chart", link: "/bubble" },
-      { title: "bullet chart", link: "/bullet" },
-      { title: "dendrogram chart", link: "/dendrogram" },
-      { title: "difference chart", link: "/difference" },
-      { title: "force chart", link: "/force" },
-      { title: "gantt chart", link: "/gantt" },
-      { title: "heat chart", link: "/heat" },
-      { title: "histogram chart", link: "/histogram" }
-    ]
+    height: 500
   },
   getters: {
-    charts: state => state.charts,
     options: state => state.options,
     height: state => state.height,
     barData: state => state.barData,
@@ -93,7 +83,9 @@ const store = new Vuex.Store({
         convertedData.push(dataObj);
       });
       return convertedData;
-    }
+    },
+    lineColumns: state => state.lineColumns,
+    lineData: state => state.lineData
   }
 });
 

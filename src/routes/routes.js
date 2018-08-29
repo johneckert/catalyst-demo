@@ -9,9 +9,9 @@ import ForceGraph from "../components/Force.vue";
 import GantWGrid from "../components/GanttWGrid.vue";
 import HeatMapWGrid from "../components/HeatMapWGrid.vue";
 import HistogramWMouse from "../components/HistogramWMouse.vue";
+import LineChartWGrid from "../components/LineChartWGrid.vue";
 
 export const routes = [
-  { path: "/", component: BarWGrid, name: "BarWGrid" },
   { path: "/bar", component: BarWGrid, name: "BarWGrid" },
   { path: "/bubblechart", component: BubbleChart, name: "BubbleChart" },
   { path: "/bubblegrid", component: BubbleGrid, name: "BubbleGrid" },
@@ -27,5 +27,6 @@ export const routes = [
   { path: "/gantt", component: GantWGrid, name: "GanttWGrid" },
   { path: "/heat", component: HeatMapWGrid, name: "HeatMapWGrid" },
   { path: "/histogram", component: HistogramWMouse, name: "HistogramWMouse" },
-  { path: "*", redirect: "/" }
+  { path: "/line", component: LineChartWGrid, name: "LineChartWGrid" },
+  { path: "*", redirect: "/bar" }
 ];

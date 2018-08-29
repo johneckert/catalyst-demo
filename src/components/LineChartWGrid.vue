@@ -1,14 +1,14 @@
 <template>
-  <v-container grid-list-md>
-    <v-layout row>
-      <v-flex xs6>
+  <v-container>
+    <v-layout >
+      <v-flex row>
         <v-card :height="height / 2">
           <ag-grid-vue 
-            id="histogramGrid"
+            id="lineGrid"
             style="width: 100%; height: 100%" 
             class="ag-theme-balham" 
-            :columnDefs="histogramColumns" 
-            :rowData="rowData" 
+            :columnDefs="lineColumns" 
+            :rowData="lineData" 
             :enableSorting="true" 
             :enableFilter="true"
             :gridReady="onGridReady"
@@ -16,16 +16,17 @@
           ></ag-grid-vue>
         </v-card>
       </v-flex>
-    </v-layout>
-    <v-layout row>
-      <v-flex xs12>
+      
+      <v-flex row>
         <v-card :height="height">
-          <histogram
-          @jsc_mouseover="testClick"
+          <line-chart
+          xaxis-label="x"
+          yaxis-label="y"
+          @jsc_mouseover="testOver"
           @jsc_click="testClick"
-          :data-model="histogramData"
-          title="histogram"
-      ></histogram>
+          :data-model="lineData"
+          title="line Chart"
+      ></line-chart>
         </v-card>
       </v-flex>
     </v-layout>
@@ -33,24 +34,18 @@
 </template>
 
 <script>
-import { D3Histogram } from "jscatalyst";
+import { D3LineChart } from "jscatalyst";
 import { mapGetters } from "vuex";
 import { AgGridVue } from "ag-grid-vue";
 
 export default {
-  name: "HistogramWMouse",
+  name: "LineChartWGrid",
   components: {
-    histogram: D3Histogram,
+    lineChart: D3LineChart,
     AgGridVue
   },
-  data() {
-    return {
-      selectedEl: "",
-      clicked: false
-    };
-  },
   computed: {
-    ...mapGetters(["histogramData", "rowData", "histogramColumns", "height"])
+    ...mapGetters(["lineData", "lineColumns", "options", "height"])
   },
   methods: {
     onGridReady(params) {
@@ -58,16 +53,11 @@ export default {
       this.columnApi = params.columnApi;
       this.gridApi.sizeColumnsToFit();
     },
-    formatRows(histogramData) {
-      const convertedData = [];
-      histogramData.map(dataPoint => {
-        let dataObj = { value: dataPoint };
-        convertedData.push(dataObj);
-      });
-      return convertedData;
+    testOver(data) {
+      console.log("over", data);
     },
     testClick(data) {
-      console.log(data);
+      console.log("click", data);
     }
   }
 };
