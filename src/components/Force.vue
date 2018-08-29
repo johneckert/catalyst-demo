@@ -16,7 +16,9 @@
           ></ag-grid-vue>
         </v-card>
       </v-flex>
-      
+      <v-flex row>
+        <v-btn @click="removeFilter">Remove Filter</v-btn>
+      </v-flex>
       <v-flex row>
         <v-card :height="height">
           <force-graph
@@ -52,22 +54,33 @@ export default {
       this.gridApi.sizeColumnsToFit();
     },
     groupFilter(data) {
-      let group = data.group.toString();
-      if (this.gridApi) {
-        this.gridApi.setQuickFilter(group);
-      }
+      let groupFilterInstance = this.gridApi.getFilterInstance("group");
+
+      let model = groupFilterInstance.setModel({
+        type: "equals",
+        filter: data.group
+      });
+      groupFilterInstance.onFilterChanged();
     },
     nameFilter(data) {
-      let id = data.id;
-      if (this.gridApi) {
-        this.gridApi.setQuickFilter(id);
-      }
+      let nameFilterInstance = this.gridApi.getFilterInstance("id");
+
+      let model = nameFilterInstance.setModel({
+        type: "equals",
+        filter: data.id
+      });
+      nameFilterInstance.onFilterChanged();
     },
     removeFilter() {
       if (this.gridApi) {
-        this.gridApi.setQuickFilter(null);
+        this.gridApi.setFilterModel(null);
       }
     },
+    // removeFilter() {
+    //   if (this.gridApi) {
+    //     this.gridApi.setQuickFilter(null);
+    //   }
+    // },
     testEvent(data) {
       console.log(data);
     }

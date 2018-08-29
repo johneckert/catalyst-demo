@@ -19,8 +19,8 @@
       <v-flex row>
         <v-card :height="height">
           <gantt-chart
-            @jsc_mouseover="logMouseover"
-            @jsc_click="logClick"
+            @jsc_mouseover="setFilter"
+            @mouseout.native="removeFilter"
             :data-model="ganttData"
             title="Gantt Chart"
           ></gantt-chart>
@@ -48,24 +48,22 @@ export default {
     onGridReady(params) {
       this.gridApi = params.api;
       this.columnApi = params.columnApi;
+      this.taskFilterComponent = this.gridApi.getFilterInstance("taskName");
       this.gridApi.sizeColumnsToFit();
     },
     setFilter(data) {
-      let x = data.x;
-      if (this.gridApi) {
-        this.gridApi.setQuickFilter(x);
-      }
+      let taskFilterInstance = this.gridApi.getFilterInstance("taskName");
+
+      let model = taskFilterInstance.setModel({
+        type: "contains",
+        filter: data.taskName
+      });
+      taskFilterInstance.onFilterChanged();
     },
     removeFilter() {
       if (this.gridApi) {
-        this.gridApi.setQuickFilter(null);
+        this.gridApi.setFilterModel(null);
       }
-    },
-    logMouseover(data) {
-      console.log(data);
-    },
-    logClick(data) {
-      console.log(data);
     }
   }
 };

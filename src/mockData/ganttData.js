@@ -42,7 +42,8 @@ export const ganttColumns = [
   },
   {
     headerName: "Task name",
-    field: "taskName"
+    field: "taskName",
+    filter: "agTextColumnFilter"
   },
   {
     headerName: "Status",
