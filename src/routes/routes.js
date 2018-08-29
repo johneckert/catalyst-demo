@@ -11,7 +11,8 @@ import HeatMapWGrid from "../components/HeatMapWGrid.vue";
 import HistogramWMouse from "../components/HistogramWMouse.vue";
 
 export const routes = [
-  { path: "", component: BarWGrid, name: "BarWGrid" },
+  { path: "/", component: BarWGrid, name: "BarWGrid" },
+  { path: "/bar", component: BarWGrid, name: "BarWGrid" },
   { path: "/bubblechart", component: BubbleChart, name: "BubbleChart" },
   { path: "/bubblegrid", component: BubbleGrid, name: "BubbleGrid" },
   { path: "/boxplot", component: BoxPlotWGrid, name: "BoxPlotWGrid" },

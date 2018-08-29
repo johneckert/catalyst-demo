@@ -20,8 +20,8 @@
         <v-card :height="height">
           <heat-map
            style="height:100%"
-            @jsc_mouseover="logMouseover"
-            @jsc_click="logClick"
+            @jsc_mouseover="setFilter"
+            @mouseout.native="removeFilter"
             :data-model="heatData"
             title="Heat Map"
           ></heat-map>
@@ -52,21 +52,18 @@ export default {
       this.gridApi.sizeColumnsToFit();
     },
     setFilter(data) {
-      let x = data.x;
-      if (this.gridApi) {
-        this.gridApi.setQuickFilter(x);
-      }
+      let dateFilterInstance = this.gridApi.getFilterInstance("date");
+
+      let model = dateFilterInstance.setModel({
+        type: "contains",
+        filter: data.date
+      });
+      dateFilterInstance.onFilterChanged();
     },
     removeFilter() {
       if (this.gridApi) {
-        this.gridApi.setQuickFilter(null);
+        this.gridApi.setFilterModel(null);
       }
-    },
-    logMouseover(data) {
-      console.log(data);
-    },
-    logClick(data) {
-      console.log(data);
     }
   }
 };

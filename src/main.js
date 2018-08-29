@@ -49,9 +49,22 @@ const store = new Vuex.Store({
     histogramData,
     histogramColumns,
     options: {},
-    height: 500
+    height: 500,
+    charts: [
+      { title: "bar chart", link: "/bar" },
+      { title: "box chart", link: "/box" },
+      { title: "bubble chart", link: "/bubble" },
+      { title: "bullet chart", link: "/bullet" },
+      { title: "dendrogram chart", link: "/dendrogram" },
+      { title: "difference chart", link: "/difference" },
+      { title: "force chart", link: "/force" },
+      { title: "gantt chart", link: "/gantt" },
+      { title: "heat chart", link: "/heat" },
+      { title: "histogram chart", link: "/histogram" }
+    ]
   },
   getters: {
+    charts: state => state.charts,
     options: state => state.options,
     height: state => state.height,
     barData: state => state.barData,
