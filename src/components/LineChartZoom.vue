@@ -4,11 +4,11 @@
       <v-flex row>
         <v-card :height="height / 2">
           <ag-grid-vue 
-            id="barGrid"
+            id="lineGrid"
             style="width: 100%; height: 100%" 
             class="ag-theme-balham" 
-            :columnDefs="barColumns" 
-            :rowData="barData" 
+            :columnDefs="lineColumns" 
+            :rowData="lineData" 
             :enableSorting="true" 
             :enableFilter="true"
             :gridReady="onGridReady"
@@ -19,16 +19,14 @@
       
       <v-flex row>
         <v-card :height="height">
-          <bar-chart
-          class="chart"
+          <line-chart-zoom
           xaxis-label="x"
           yaxis-label="y"
-          @jsc_mouseover="setFilter"
+          @jsc_mouseover="testOver"
           @jsc_click="testClick"
-          @mouseout.native="removeFilter"
-          :data-model="barData"
-          title="Bar Chart"
-      ></bar-chart>
+          :data-model="lineData"
+          title="line Chart"
+      ></line-chart-zoom>
         </v-card>
       </v-flex>
     </v-layout>
@@ -36,18 +34,18 @@
 </template>
 
 <script>
-import { D3BarChart } from "jscatalyst";
+import { D3ZoomableLineChart } from "jscatalyst";
 import { mapGetters } from "vuex";
 import { AgGridVue } from "ag-grid-vue";
 
 export default {
-  name: "BarWGrid",
+  name: "LineChartWGrid",
   components: {
-    barChart: D3BarChart,
+    lineChartZoom: D3ZoomableLineChart,
     AgGridVue
   },
   computed: {
-    ...mapGetters(["barData", "barColumns", "options", "height"])
+    ...mapGetters(["lineData", "lineColumns", "options", "height"])
   },
   methods: {
     onGridReady(params) {
@@ -55,19 +53,11 @@ export default {
       this.columnApi = params.columnApi;
       this.gridApi.sizeColumnsToFit();
     },
-    setFilter(data) {
-      let x = data.x;
-      if (this.gridApi) {
-        this.gridApi.setQuickFilter(x);
-      }
-    },
-    removeFilter() {
-      if (this.gridApi) {
-        this.gridApi.setQuickFilter(null);
-      }
+    testOver(data) {
+      console.log("over", data);
     },
     testClick(data) {
-      console.log(data);
+      console.log("click", data);
     }
   }
 };
